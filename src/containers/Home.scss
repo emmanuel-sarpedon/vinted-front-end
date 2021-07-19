@@ -3,6 +3,13 @@
     background-image: url("../assets/bg-image.jpg");
     background-size: cover;
     background-position: 50%;
+    position: relative;
+    padding: 0;
+
+    > img {
+      vertical-align: bottom;
+      margin-bottom: -45px;
+    }
 
     > .container {
       height: 450px;
@@ -36,13 +43,20 @@
         }
       }
     }
+
+    img {
+      position: relative;
+      top: 0;
+      right: 0;
+      color: red;
+    }
   }
 
   .offers {
     display: flex;
     flex-wrap: wrap;
     width: 1225px;
-    margin: 40px auto;
+    margin: 85px auto;
     justify-content: space-between;
 
     a {

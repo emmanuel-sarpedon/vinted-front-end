@@ -30,11 +30,11 @@ const App = () => {
     <div className="app">
       <Router>
         <Switch>
+          <Route exact path="/">
+            <Home isLoading={isLoading} offers={offers} />
+          </Route>
           <Route path="/offer/:id">
             <Offer />
-          </Route>
-          <Route path="/">
-            <Home isLoading={isLoading} offers={offers} />
           </Route>
         </Switch>
       </Router>

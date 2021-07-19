@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "../Components/Header/Header";
 
 import "./Home.scss";
+import tear from "../assets/tear.svg";
 
 import formatPrice from "../helpers/formatPrice";
 
@@ -19,6 +20,7 @@ const Home = (props) => {
             <button>Commencer à vendre</button>
           </div>
         </div>
+        <img src={tear} alt="" />
       </div>
       <div className="offers">
         {isLoading
