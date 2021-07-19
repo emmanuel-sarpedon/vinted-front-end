@@ -1,11 +1,16 @@
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 120px;
   width: 1300px;
   margin: 0 auto;
 
-  > img {
+  button:last-child {
+    margin-left: 60px;
+  }
+
+  img {
     height: 40px;
   }
 }

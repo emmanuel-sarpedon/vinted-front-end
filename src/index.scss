@@ -1,13 +1,29 @@
+@font-face {
+  font-family: "MaisonNeue";
+  src: url("./assets/fonts/MaisonNeue-Book.eot");
+  src: url("./assets/fonts/MaisonNeue-Book.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/fonts/MaisonNeue-Book.ttf") format("truetype"),
+    url("./assets/fonts/MaisonNeue-Book.svg#Font") format("svg");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "MaisonNeue", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+p {
+  margin: 0;
 }
