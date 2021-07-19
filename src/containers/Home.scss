@@ -1,0 +1,30 @@
+.home {
+  .ready {
+    background-image: url("../assets/bg-image.jpg");
+    background-size: cover;
+    background-position: 50%;
+    height: 450px;
+  }
+
+  .offers {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1300px;
+    margin: 0 auto;
+    justify-content: space-between;
+
+    .offer-item {
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+
+      width: 240px;
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 360px;
+        border: red 1px solid;
+      }
+    }
+  }
+}

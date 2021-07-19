@@ -1,0 +1,11 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 120px;
+  width: 1300px;
+  margin: 0 auto;
+
+  > img {
+    height: 40px;
+  }
+}
