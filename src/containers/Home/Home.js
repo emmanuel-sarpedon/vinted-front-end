@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-import Header from "../Components/Header/Header";
+import Header from "../../Components/Header/Header";
 
 import "./Home.scss";
-import tear from "../assets/tear.svg";
+import tear from "../../assets/tear.svg";
 
-import formatPrice from "../helpers/formatPrice";
+import formatPrice from "../../helpers/formatPrice";
 
 const Home = (props) => {
   const { isLoading, offers } = props;
@@ -26,11 +26,9 @@ const Home = (props) => {
         {isLoading
           ? "Chargement en cours"
           : offers.map((e, i) => (
-              <Link to={"/offer/" + e._id}>
-                <div className="offer-item" key={i}>
-                  <div className="username" key={e._id}>
-                    {e.owner.account.username}
-                  </div>
+              <Link key={e._id} to={"/offer/" + e._id}>
+                <div className="offer-item">
+                  <div className="username">{e.owner.account.username}</div>
                   <img src={e.product_image.secure_url} alt="" />
                   <div className="price">{formatPrice(e.product_price)}</div>
                   <div className="details">

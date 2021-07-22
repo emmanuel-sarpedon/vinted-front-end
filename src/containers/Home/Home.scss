@@ -1,6 +1,6 @@
 .home {
   .ready {
-    background-image: url("../assets/bg-image.jpg");
+    background-image: url("../../assets/bg-image.jpg");
     background-size: cover;
     background-position: 50%;
     position: relative;
@@ -16,7 +16,7 @@
       margin-top: 0px;
       display: flex;
       align-items: center;
-      width: 1225px;
+      max-width: 1225px;
       margin: 0 auto;
 
       > div {
@@ -55,7 +55,7 @@
   .offers {
     display: flex;
     flex-wrap: wrap;
-    width: 1225px;
+    max-width: 1225px;
     margin: 85px auto;
     justify-content: space-between;
 

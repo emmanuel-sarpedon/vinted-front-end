@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import formatPrice from "../helpers/formatPrice";
+import formatPrice from "../../helpers/formatPrice";
 
-import Header from "../Components/Header/Header";
+import Header from "../../Components/Header/Header";
 
 import "./Offer.scss";
 
