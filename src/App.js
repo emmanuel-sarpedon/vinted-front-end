@@ -5,8 +5,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Home from "./containers/Home";
-import Offer from "./containers/Offer";
+import Signup from "./containers/Signup/Signup";
+import Home from "./containers/Home/Home";
+import Offer from "./containers/Offer/Offer";
 
 const App = () => {
   const [offers, setOffers] = useState([]);
@@ -35,6 +36,9 @@ const App = () => {
           </Route>
           <Route path="/offer/:id">
             <Offer />
+          </Route>
+          <Route path="/signup">
+            <Signup />
           </Route>
         </Switch>
       </Router>

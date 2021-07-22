@@ -5,15 +5,25 @@ button {
   color: white;
   background-color: #2cb1ba;
   font-family: "MaisonNeue";
-  padding: 10px;
   border-radius: 5px;
-  min-width: 115px;
   box-sizing: border-box;
   font-size: 12px;
   margin-left: 20px;
 
+  &:hover {
+    box-shadow: 0 0 5px $main-color;
+  }
+
   &.thin {
     background-color: white;
     color: $main-color;
+  }
+
+  &.falsy {
+    background-color: $falsy-color;
+    border-color: $falsy-color;
+    &:hover {
+      box-shadow: 0 0 5px $falsy-color;
+    }
   }
 }
