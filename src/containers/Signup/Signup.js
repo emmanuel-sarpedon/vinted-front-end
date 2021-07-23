@@ -88,6 +88,9 @@ const Signup = () => {
           type="tel"
           placeholder="Téléphone"
           value={phone}
+          minLength="10"
+          maxLength="10"
+          pattern="[0-9]{10}"
           onChange={handleChangePhone}
         />
         <input

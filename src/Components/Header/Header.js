@@ -42,7 +42,9 @@ const Header = () => {
               <button className="thin">
                 <Link to="/signup">S'inscrire</Link>
               </button>
-              <button className="thin">Se connecter</button>
+              <button className="thin">
+                <Link to="/login">Se connecter</Link>
+              </button>
             </>
           )}
 
