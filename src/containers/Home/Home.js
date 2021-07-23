@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import axios from "axios";
 
 import Header from "../../Components/Header/Header";
 
@@ -7,8 +10,23 @@ import tear from "../../assets/tear.svg";
 
 import formatPrice from "../../helpers/formatPrice";
 
-const Home = (props) => {
-  const { isLoading, offers } = props;
+const Home = () => {
+  const [offers, setOffers] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get(
+        "https://lereacteur-vinted-api.herokuapp.com/offers"
+      );
+
+      setOffers(response.data.offers);
+
+      setIsLoading(false);
+    }
+    fetchData();
+  }, [offers.length]);
 
   return (
     <div className="home">
