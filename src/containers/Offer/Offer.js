@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -8,25 +9,32 @@ import Header from "../../Components/Header/Header";
 import "./Offer.scss";
 
 const Offer = () => {
+  //const url = "https://lereacteur-vinted-api.herokuapp.com";
+  const url = "https://api-vinted.herokuapp.com";
   const { id } = useParams();
 
   const [offer, setOffer] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     async function fetchData(id) {
       setIsLoading(true);
 
-      const response = await axios.get(
-        "https://lereacteur-vinted-api.herokuapp.com/offer/" + id
-      );
+      setToken(Cookies.get("token"));
 
-      setOffer(response.data);
+      if (token) {
+        const response = await axios.get(url + "/offer/" + id, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
-      setIsLoading(false);
+        setOffer(response.data);
+
+        setIsLoading(false);
+      }
     }
     fetchData(id);
-  }, [id]);
+  }, [id, token]);
 
   return (
     <div className="offer">
