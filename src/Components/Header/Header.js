@@ -1,10 +1,29 @@
-import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+
+import { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 import vintedlogo from "../../assets/vinted_logo.png";
 
 import "./Header.scss";
 
 const Header = () => {
+  const [isConnected, setIsConnected] = useState(false);
+  const [token, setToken] = useState("");
+
+  let history = useHistory();
+
+  useEffect(() => {
+    setToken(Cookies.get("token"));
+    token ? setIsConnected(true) : setIsConnected(false);
+  }, [token]);
+
+  const handleClickDisconnect = () => {
+    Cookies.remove("token");
+    setToken(Cookies.get("token"));
+    history.push("/");
+  };
+
   return (
     <header>
       <div className="container">
@@ -12,8 +31,21 @@ const Header = () => {
           <img src={vintedlogo} alt="vinted-logo" />
         </Link>
         <div>
-          <button className="thin">S'inscrire</button>
-          <button className="thin">Se connecter</button>
+          {isConnected ? (
+            <>
+              <button className="falsy" onClick={handleClickDisconnect}>
+                Se déconnecter
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="thin">
+                <Link to="/signup">S'inscrire</Link>
+              </button>
+              <button className="thin">Se connecter</button>
+            </>
+          )}
+
           <button>Vends tes articles</button>
         </div>
       </div>
