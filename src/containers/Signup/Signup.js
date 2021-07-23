@@ -1,20 +1,12 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import Header from "../../Components/Header/Header";
 
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import "./Signup.scss";
-
-//Créer formulaire avec input contrôlé
-//Créer requête Axios vers /user/signup
-/*
-{
-  "username": "emmanuels",
-  "password": "bestmdpever",
-  "email": "emmanuel@vinted.com",
-  "phone": "+33666778899"
-}*/
 
 const Signup = () => {
   const url = "https://api-vinted.herokuapp.com";
@@ -24,6 +16,8 @@ const Signup = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [newletterSubscription, setNewletterSubscription] = useState(false);
+
+  let history = useHistory();
 
   const handleChangeUsername = (e) => {
     const value = e.target.value;
@@ -62,19 +56,22 @@ const Signup = () => {
 
     try {
       const response = await axios.post(url + "/user/signup", fields);
-      console.log(response);
+      if (response.status === 200) {
+        Cookies.set("token", response.data.token);
+        history.push("/");
+      } else {
+        alert(response);
+      }
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
-
-    console.log(fields);
   };
 
   return (
     <div className="signup">
       <Header />
       <form onSubmit={handleSubmit}>
-        <h1>S'inscrire</h1>
+        <div>S'inscrire</div>
         <input
           type="text"
           placeholder="Nom d'utilisateur"
@@ -99,19 +96,22 @@ const Signup = () => {
           value={password}
           onChange={handleChangePassword}
         />
-        <div>
-          <input
-            type="checkbox"
-            checked={newletterSubscription}
-            onChange={handleChangeNewletterSubscription}
-          />
-          <span>S'inscrire à notre newletter</span>
+        <div className="newletter">
+          <div>
+            <input
+              type="checkbox"
+              checked={newletterSubscription}
+              onChange={handleChangeNewletterSubscription}
+            />
+            <span>S'inscrire à notre newletter</span>
+          </div>
+          <p>
+            En m'inscrivant je confirme avoir lu et accepté les Termes &
+            Conditions et Politique de Confidentialité de Vinted. Je confirme
+            avoir au moins 18 ans.
+          </p>
         </div>
-        <div>
-          En m'inscrivant je confirme avoir lu et accepté les Termes &
-          Conditions et Politique de Confidentialité de Vinted. Je confirme
-          avoir au moins 18 ans.
-        </div>
+
         <button type="submit">S'inscrire</button>
       </form>
     </div>
