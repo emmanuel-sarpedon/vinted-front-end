@@ -10,6 +10,16 @@
   font-display: swap;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+  &:hover,
+  &:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
 body {
   margin: 0;
   font-family: "MaisonNeue", -apple-system, BlinkMacSystemFont, "Segoe UI",

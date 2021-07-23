@@ -1,12 +1,11 @@
 header {
-  height: 120px;
   width: 100%;
 
   > .container {
     height: 100%;
     display: flex;
     justify-content: space-between;
-    width: 1225px;
+    max-width: 1225px;
     margin: 0 auto;
     display: flex;
     align-items: center;
