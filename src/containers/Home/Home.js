@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -11,22 +12,31 @@ import tear from "../../assets/tear.svg";
 import formatPrice from "../../helpers/formatPrice";
 
 const Home = () => {
-  const [offers, setOffers] = useState([]);
+  //const url = "https://lereacteur-vinted-api.herokuapp.com";
+  const url = "https://api-vinted.herokuapp.com";
 
+  const [offers, setOffers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get(
-        "https://lereacteur-vinted-api.herokuapp.com/offers"
-      );
+      setIsLoading(true);
 
-      setOffers(response.data.offers);
+      setToken(Cookies.get("token"));
 
-      setIsLoading(false);
+      if (token) {
+        const response = await axios.get(url + "/offers", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        console.log(response);
+        setOffers(response.data.offers);
+
+        setIsLoading(false);
+      }
     }
     fetchData();
-  }, [offers.length]);
+  }, [token]);
 
   return (
     <div className="home">
@@ -41,7 +51,7 @@ const Home = () => {
         <img src={tear} alt="" />
       </div>
       <div className="offers">
-        {isLoading
+        {isLoading && token
           ? "Chargement en cours"
           : offers.map((e, i) => (
               <Link key={e._id} to={"/offer/" + e._id}>
