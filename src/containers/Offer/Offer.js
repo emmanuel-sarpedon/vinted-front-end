@@ -5,6 +5,7 @@ import axios from "axios";
 import formatPrice from "../../helpers/formatPrice";
 
 import Header from "../../Components/Header/Header";
+import Loader from "../../Components/Loader/Loader";
 
 import "./Offer.scss";
 
@@ -40,7 +41,7 @@ const Offer = () => {
     <div className="offer">
       <Header />
       {isLoading ? (
-        "Chargement en cours"
+        <Loader />
       ) : (
         <div className="container">
           <img src={offer.product_image.secure_url} alt="offer" />

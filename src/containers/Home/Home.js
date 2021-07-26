@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 
+import Loader from "../../Components/Loader/Loader";
 import Header from "../../Components/Header/Header";
 
 import "./Home.scss";
@@ -51,23 +52,25 @@ const Home = () => {
         <img src={tear} alt="" />
       </div>
       <div className="offers">
-        {isLoading && token
-          ? "Chargement en cours"
-          : offers.map((e, i) => (
-              <Link key={e._id} to={"/offer/" + e._id}>
-                <div className="offer-item">
-                  <div className="username">{e.owner.account.username}</div>
-                  <img src={e.product_image.secure_url} alt="" />
-                  <div className="price">{formatPrice(e.product_price)}</div>
-                  <div className="details">
-                    {Object.values(e.product_details[0])}
-                  </div>
-                  <div className="details">
-                    {Object.values(e.product_details[1])}
-                  </div>
+        {isLoading && token ? (
+          <Loader />
+        ) : (
+          offers.map((e, i) => (
+            <Link key={e._id} to={"/offer/" + e._id}>
+              <div className="offer-item">
+                <div className="username">{e.owner.account.username}</div>
+                <img src={e.product_image.secure_url} alt="" />
+                <div className="price">{formatPrice(e.product_price)}</div>
+                <div className="details">
+                  {Object.values(e.product_details[0])}
                 </div>
-              </Link>
-            ))}
+                <div className="details">
+                  {Object.values(e.product_details[1])}
+                </div>
+              </div>
+            </Link>
+          ))
+        )}
       </div>
     </div>
   );

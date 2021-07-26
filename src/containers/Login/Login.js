@@ -2,6 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 import Header from "../../Components/Header/Header";
+import Loader from "../../Components/Loader/Loader";
 
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
@@ -13,6 +14,7 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   let history = useHistory();
 
@@ -28,6 +30,8 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setIsLoading(true);
+
     const fields = {
       email: email,
       password: password,
@@ -36,12 +40,15 @@ const Login = () => {
     try {
       const response = await axios.post(url + "/user/login", fields);
       if (response.status === 200) {
+        setIsLoading(false);
         Cookies.set("token", response.data.token);
         history.push("/");
       } else {
+        setIsLoading(false);
         alert(response);
       }
     } catch (error) {
+      setIsLoading(false);
       alert(error);
     }
   };
@@ -49,24 +56,28 @@ const Login = () => {
   return (
     <div className="login">
       <Header />
-      <form onSubmit={handleSubmit}>
-        <div>Se connecter</div>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={handleChangeEmail}
-        />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          value={password}
-          onChange={handleChangePassword}
-        />
-        <button type="submit">Se connecter</button>
-        <Link to="/signup">Pas encore de compte ? Inscris-toi !</Link>
-        <div>{}</div>
-      </form>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div>Se connecter</div>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={handleChangeEmail}
+          />
+          <input
+            type="password"
+            placeholder="Mot de passe"
+            value={password}
+            onChange={handleChangePassword}
+          />
+          <button type="submit">Se connecter</button>
+          <Link to="/signup">Pas encore de compte ? Inscris-toi !</Link>
+          <div>{}</div>
+        </form>
+      )}
     </div>
   );
 };

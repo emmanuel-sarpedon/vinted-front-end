@@ -1,0 +1,38 @@
+@import "../../color.scss";
+
+$duration: 1s;
+
+.loader {
+  margin: 50px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .circle {
+    height: 10px;
+    width: 10px;
+    background-color: $main-color;
+    border-radius: 100%;
+    margin: 20px;
+    animation: zoom $duration linear infinite;
+
+    &:nth-child(2) {
+      animation-delay: $duration/3;
+    }
+    &:last-child {
+      animation-delay: $duration/3 * 2;
+    }
+  }
+
+  @keyframes zoom {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
