@@ -1,7 +1,5 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 
-import Header from "../../Components/Header/Header";
 import Loader from "../../Components/Loader/Loader";
 
 import { useState } from "react";
@@ -9,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 import "./Signup.scss";
 
-const Signup = () => {
+const Signup = ({ handleLogin }) => {
   const url = "https://api-vinted.herokuapp.com";
 
   const [username, setUsername] = useState("");
@@ -61,7 +59,7 @@ const Signup = () => {
       const response = await axios.post(url + "/user/signup", fields);
       if (response.status === 200) {
         setIsLoading(false);
-        Cookies.set("token", response.data.token);
+        handleLogin(response.data.token);
         history.push("/");
       } else {
         setIsLoading(false);
@@ -75,7 +73,6 @@ const Signup = () => {
 
   return (
     <div className="signup">
-      <Header />
       {isLoading ? (
         <Loader />
       ) : (
