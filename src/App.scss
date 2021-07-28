@@ -9,6 +9,7 @@ button {
   box-sizing: border-box;
   font-size: 12px;
   margin-left: 20px;
+  padding: 5px 20px;
 
   &:hover {
     box-shadow: 0 0 5px $main-color;

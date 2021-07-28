@@ -1,3 +1,5 @@
+@import "../../color.scss";
+
 .home {
   .ready {
     background-image: url("../../assets/bg-image.jpg");
@@ -8,7 +10,6 @@
 
     > img {
       vertical-align: bottom;
-      margin-bottom: -45px;
     }
 
     > .container {
@@ -40,6 +41,7 @@
           margin: 0;
           font-size: 16px;
           font-family: "Arial";
+          padding: 15px 20px;
         }
       }
     }
@@ -49,6 +51,47 @@
       top: 0;
       right: 0;
       color: red;
+    }
+  }
+
+  .paging {
+    max-width: 1225px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    box-sizing: border-box;
+
+    .results {
+      color: gray;
+    }
+
+    .pages {
+      margin-top: 50px;
+    }
+
+    .page {
+      padding: 5px 10px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      color: $main-color;
+      border: white 1px solid;
+
+      &:not(:first-child) {
+        margin-left: 50px;
+      }
+
+      &:hover {
+        border: $main-color 1px solid;
+      }
+
+      &.active {
+        color: white;
+        border: white 1px solid;
+        background-color: $main-color;
+        cursor: default;
+      }
     }
   }
 
