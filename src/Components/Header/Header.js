@@ -13,6 +13,9 @@ const Header = (props) => {
         <Link to="/">
           <img src={vintedlogo} alt="vinted-logo" />
         </Link>
+        <form>
+          <input type="text" />
+        </form>
         <div>
           {token ? (
             <>
