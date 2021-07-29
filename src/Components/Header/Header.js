@@ -1,11 +1,21 @@
 import { Link } from "react-router-dom";
 
 import vintedlogo from "../../assets/vinted_logo.png";
+import DoubleRangeSlider from "../DoubleRange/DoubleRangeSlider";
 
 import "./Header.scss";
 
 const Header = (props) => {
-  const { token, handleLogout } = props;
+  const {
+    token,
+    handleLogout,
+    keyword,
+    handleChangeKeyword,
+    isPriceSorting,
+    handleChangePriceSorting,
+    priceRange,
+    handleChangePriceRange,
+  } = props;
 
   return (
     <header>
@@ -14,7 +24,16 @@ const Header = (props) => {
           <img src={vintedlogo} alt="vinted-logo" />
         </Link>
         <form>
-          <input type="text" />
+          <input
+            type="checkbox"
+            checked={isPriceSorting}
+            onChange={handleChangePriceSorting}
+          />
+          <input type="text" value={keyword} onChange={handleChangeKeyword} />
+          <DoubleRangeSlider
+            priceRange={priceRange}
+            onChange={handleChangePriceRange}
+          />
         </form>
         <div>
           {token ? (

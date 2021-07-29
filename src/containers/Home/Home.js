@@ -11,17 +11,21 @@ import tear from "../../assets/tear.svg";
 
 import formatPrice from "../../helpers/formatPrice";
 
-const Home = () => {
-  const url = "https://api-vinted.herokuapp.com";
+const Home = (props) => {
+  const url = "https://api-vinted.herokuapp.com/offers";
+
+  const { keyword, isPriceDesc, priceMin, priceMax } = props;
 
   const location = useLocation();
   const params = qs.parse(location.search.substring(1)); // transform "?page=1" on object {page:1}
-  const page = parseInt(params.page) || 1;
+  const page = parseInt(params.page);
   const limit = parseInt(params.limit) || 4;
 
-  const [offers, setOffers] = useState([]);
-  const [numberOfResults, setNumberOfResults] = useState();
+  const sort = isPriceDesc ? "price-desc" : "price-asc";
 
+  const [offers, setOffers] = useState([]);
+
+  const [numberOfResults, setNumberOfResults] = useState();
   const [numberOfPages, setNumberOfPages] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -29,9 +33,45 @@ const Home = () => {
     async function fetchData() {
       setIsLoading(true);
 
-      const response = await axios.get(
-        `${url}/offers?page=${page}&limit=${limit}`
-      );
+      let filters = "";
+
+      if (page) {
+        filters.length === 0
+          ? (filters += "?page=" + page)
+          : (filters += "&page=" + page);
+      }
+
+      if (limit) {
+        filters.length === 0
+          ? (filters += "?limit=" + limit)
+          : (filters += "&limit=" + limit);
+      }
+
+      if (keyword) {
+        filters.length === 0
+          ? (filters += "?title=" + keyword)
+          : (filters += "&title=" + keyword);
+      }
+
+      if (sort) {
+        filters.length === 0
+          ? (filters += "?sort=" + sort)
+          : (filters += "&sort=" + sort);
+      }
+
+      if (priceMin) {
+        filters.length === 0
+          ? (filters += "?priceMin=" + priceMin)
+          : (filters += "&priceMin=" + priceMin);
+      }
+
+      if (priceMax) {
+        filters.length === 0
+          ? (filters += "?priceMax=" + priceMax)
+          : (filters += "&priceMax=" + priceMax);
+      }
+
+      const response = await axios.get(url + filters);
 
       setOffers(response.data.offers);
       setNumberOfResults(response.data.count);
@@ -40,7 +80,7 @@ const Home = () => {
       setIsLoading(false);
     }
     fetchData();
-  }, [page, limit]);
+  }, [page, limit, keyword, sort, priceMin, priceMax]);
 
   const paginationLinks = [];
 

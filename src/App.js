@@ -13,6 +13,11 @@ import Cookies from "js-cookie";
 
 const App = () => {
   const [token, setToken] = useState(Cookies.get("token") || "");
+  const [keyword, setKeyword] = useState("");
+  const [isPriceDesc, setIsPriceDesc] = useState(false);
+
+  const [priceMin, setPriceMin] = useState(0);
+  const [priceMax, setPriceMax] = useState(1000);
 
   const handleLogin = (token) => {
     Cookies.set("token", token);
@@ -24,13 +29,41 @@ const App = () => {
     setToken("");
   };
 
+  const handleChangeKeyword = (e) => {
+    const value = e.target.value;
+    setKeyword(value);
+  };
+
+  const handleChangePriceSorting = (e) => {
+    setIsPriceDesc(!isPriceDesc);
+  };
+
+  const handleChangePriceRange = (event, array) => {
+    setPriceMin(Math.min(...array));
+    setPriceMax(Math.max(...array));
+  };
+
   return (
     <div className="app">
       <Router>
-        <Header token={token} handleLogout={handleLogout} />
+        <Header
+          token={token}
+          handleLogout={handleLogout}
+          title={keyword}
+          handleChangeKeyword={handleChangeKeyword}
+          isPriceDesc={isPriceDesc}
+          handleChangePriceSorting={handleChangePriceSorting}
+          priceRange={[priceMin, priceMax]}
+          handleChangePriceRange={handleChangePriceRange}
+        />
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home
+              keyword={keyword}
+              isPriceDesc={isPriceDesc}
+              priceMin={priceMin}
+              priceMax={priceMax}
+            />
           </Route>
           <Route path="/offer/:id">
             <Offer />
