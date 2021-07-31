@@ -9,9 +9,9 @@ const Header = (props) => {
   const {
     token,
     handleLogout,
-    keyword,
-    handleChangeKeyword,
-    isPriceSorting,
+    search,
+    handleChangeSearch,
+    isPriceDesc,
     handleChangePriceSorting,
     priceRange,
     handleChangePriceRange,
@@ -23,18 +23,36 @@ const Header = (props) => {
         <Link to="/">
           <img src={vintedlogo} alt="vinted-logo" />
         </Link>
-        <form>
-          <input
-            type="checkbox"
-            checked={isPriceSorting}
-            onChange={handleChangePriceSorting}
-          />
-          <input type="text" value={keyword} onChange={handleChangeKeyword} />
-          <DoubleRangeSlider
-            priceRange={priceRange}
-            onChange={handleChangePriceRange}
-          />
-        </form>
+        <div className="filters">
+          <form>
+            <input
+              type="text"
+              value={search}
+              onChange={handleChangeSearch}
+              placeholder="Rechercher des articles"
+            />
+
+            <label className="switch">
+              Tri par prix :
+              <input
+                type="checkbox"
+                checked={isPriceDesc}
+                onChange={handleChangePriceSorting}
+              />
+              <div className="slider">
+                <span className={isPriceDesc && "checked"}>↑</span>
+              </div>
+            </label>
+
+            <DoubleRangeSlider
+              priceRange={priceRange}
+              onChange={handleChangePriceRange}
+              min={0}
+              max={1000}
+            />
+          </form>
+        </div>
+
         <div>
           {token ? (
             <>

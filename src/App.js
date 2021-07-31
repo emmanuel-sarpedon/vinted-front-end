@@ -1,6 +1,7 @@
 import "./App.scss";
 
 import { useState } from "react";
+import { useDebounce } from "use-debounce";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "./Components/Header/Header";
@@ -13,7 +14,8 @@ import Cookies from "js-cookie";
 
 const App = () => {
   const [token, setToken] = useState(Cookies.get("token") || "");
-  const [keyword, setKeyword] = useState("");
+  const [search, setSearch] = useState("");
+  const [debounceSearch] = useDebounce(search, 500);
   const [isPriceDesc, setIsPriceDesc] = useState(false);
 
   const [priceMin, setPriceMin] = useState(0);
@@ -29,13 +31,12 @@ const App = () => {
     setToken("");
   };
 
-  const handleChangeKeyword = (e) => {
-    const value = e.target.value;
-    setKeyword(value);
+  const handleChangeSearch = (e) => {
+    setSearch(e.target.value);
   };
 
   const handleChangePriceSorting = (e) => {
-    setIsPriceDesc(!isPriceDesc);
+    setIsPriceDesc(e.target.checked);
   };
 
   const handleChangePriceRange = (event, array) => {
@@ -49,8 +50,8 @@ const App = () => {
         <Header
           token={token}
           handleLogout={handleLogout}
-          title={keyword}
-          handleChangeKeyword={handleChangeKeyword}
+          search={search}
+          handleChangeSearch={handleChangeSearch}
           isPriceDesc={isPriceDesc}
           handleChangePriceSorting={handleChangePriceSorting}
           priceRange={[priceMin, priceMax]}
@@ -59,7 +60,7 @@ const App = () => {
         <Switch>
           <Route exact path="/">
             <Home
-              keyword={keyword}
+              search={debounceSearch}
               isPriceDesc={isPriceDesc}
               priceMin={priceMin}
               priceMax={priceMax}

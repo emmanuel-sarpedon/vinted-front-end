@@ -12,13 +12,13 @@ import tear from "../../assets/tear.svg";
 import formatPrice from "../../helpers/formatPrice";
 
 const Home = (props) => {
-  const url = "https://api-vinted.herokuapp.com/offers";
+  const url = "https://api-vinted.herokuapp.com/offers?";
 
-  const { keyword, isPriceDesc, priceMin, priceMax } = props;
+  const { search, isPriceDesc, priceMin, priceMax } = props;
 
   const location = useLocation();
   const params = qs.parse(location.search.substring(1)); // transform "?page=1" on object {page:1}
-  const page = parseInt(params.page);
+  const page = parseInt(params.page) || 1;
   const limit = parseInt(params.limit) || 4;
 
   const sort = isPriceDesc ? "price-desc" : "price-asc";
@@ -33,60 +33,36 @@ const Home = (props) => {
     async function fetchData() {
       setIsLoading(true);
 
-      let filters = "";
+      const queryParams = qs.stringify({
+        page: page,
+        limit: limit,
+        title: search,
+        sort: sort,
+        priceMin: priceMin,
+        priceMax: priceMax,
+      });
 
-      if (page) {
-        filters.length === 0
-          ? (filters += "?page=" + page)
-          : (filters += "&page=" + page);
-      }
-
-      if (limit) {
-        filters.length === 0
-          ? (filters += "?limit=" + limit)
-          : (filters += "&limit=" + limit);
-      }
-
-      if (keyword) {
-        filters.length === 0
-          ? (filters += "?title=" + keyword)
-          : (filters += "&title=" + keyword);
-      }
-
-      if (sort) {
-        filters.length === 0
-          ? (filters += "?sort=" + sort)
-          : (filters += "&sort=" + sort);
-      }
-
-      if (priceMin) {
-        filters.length === 0
-          ? (filters += "?priceMin=" + priceMin)
-          : (filters += "&priceMin=" + priceMin);
-      }
-
-      if (priceMax) {
-        filters.length === 0
-          ? (filters += "?priceMax=" + priceMax)
-          : (filters += "&priceMax=" + priceMax);
-      }
-
-      const response = await axios.get(url + filters);
+      const response = await axios.get(url + queryParams);
 
       setOffers(response.data.offers);
       setNumberOfResults(response.data.count);
       setNumberOfPages(Math.ceil(response.data.count / limit));
 
       setIsLoading(false);
+
+      console.log(queryParams);
     }
     fetchData();
-  }, [page, limit, keyword, sort, priceMin, priceMax]);
+  }, [page, limit, search, sort, priceMin, priceMax]);
 
   const paginationLinks = [];
 
   for (let i = 1; i <= numberOfPages; i++) {
     paginationLinks.push(
-      <Link className={page === i ? "page active" : "page"} to={`?page=${i}`}>
+      <Link
+        className={page === i || (!page && i === 1) ? "page active" : "page"}
+        to={`?page=${i}`}
+      >
         {i}
       </Link>
     );

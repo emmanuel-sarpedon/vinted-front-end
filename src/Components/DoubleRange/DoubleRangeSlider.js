@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 });
 
 const DoubleRangeSlider = (props) => {
-  const { priceRange, onChange } = props;
+  const { priceRange, onChange, min, max } = props;
 
   const classes = useStyles();
 
@@ -20,8 +20,8 @@ const DoubleRangeSlider = (props) => {
       <Slider
         className={classes.root}
         value={priceRange}
-        min={0}
-        max={1000}
+        min={min}
+        max={max}
         onChange={onChange}
         valueLabelDisplay="on"
         aria-labelledby="range-slider"
