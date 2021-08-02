@@ -1,11 +1,16 @@
+@import "../../color.scss";
+
 header {
   width: 100%;
-  padding: 10px 0;
+  padding: 30px 0;
+
+  z-index: 1;
+  margin: 0 auto;
+  background-color: white;
 
   > .container {
     height: 100%;
     display: flex;
-    justify-content: space-between;
     max-width: 1225px;
     margin: 0 auto;
     display: flex;
@@ -13,8 +18,57 @@ header {
     justify-content: space-between;
   }
 
-  margin: 0 auto;
-  background-color: white;
+  .filters {
+    &.hidden {
+      display: none;
+    }
+
+    form {
+      .search {
+        margin-bottom: 10px;
+
+        input {
+          border: none;
+          background-color: rgb(241, 240, 240);
+          width: 300px;
+          height: 30px;
+          padding: 5px 20px;
+        }
+      }
+
+      .switch {
+        display: inline-block;
+        margin-bottom: 10px;
+        color: rgb(175, 175, 175);
+        input {
+          height: 0;
+          width: 0;
+        }
+
+        .slider {
+          display: inline-block;
+          width: 60px;
+          background-color: $main-color;
+          color: white;
+          border-radius: 50px;
+
+          span {
+            display: inline-block;
+            background-color: white;
+            color: $main-color;
+            border-radius: 100%;
+            padding: 0 5px;
+            transition: all 0.4s;
+            border: 1px solid $main-color;
+
+            &.checked {
+              transform: translate(40px) rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+  }
 
   button:last-child {
     margin-left: 60px;

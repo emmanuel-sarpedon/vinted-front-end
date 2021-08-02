@@ -23,6 +23,7 @@ button {
   &.falsy {
     background-color: $falsy-color;
     border-color: $falsy-color;
+
     &:hover {
       box-shadow: 0 0 5px $falsy-color;
     }

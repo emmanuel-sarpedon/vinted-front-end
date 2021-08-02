@@ -6,10 +6,11 @@
     background-size: cover;
     background-position: 50%;
     position: relative;
-    padding: 0;
+    padding: -100px 0 0 0;
 
     > img {
       vertical-align: bottom;
+      margin: -50px;
     }
 
     > .container {
