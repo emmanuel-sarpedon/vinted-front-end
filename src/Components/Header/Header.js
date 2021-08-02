@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import vintedlogo from "../../assets/vinted_logo.png";
-import DoubleRangeSlider from "../DoubleRange/DoubleRangeSlider";
+import DoubleRange from "../DoubleRange/DoubleRange";
 
 import "./Header.scss";
 
@@ -25,31 +25,35 @@ const Header = (props) => {
         </Link>
         <div className="filters">
           <form>
-            <input
-              type="text"
-              value={search}
-              onChange={handleChangeSearch}
-              placeholder="Rechercher des articles"
-            />
-
-            <label className="switch">
-              Tri par prix :
+            <div className="search">
               <input
-                type="checkbox"
-                checked={isPriceDesc}
-                onChange={handleChangePriceSorting}
+                type="text"
+                value={search}
+                onChange={handleChangeSearch}
+                placeholder="Rechercher des articles"
               />
-              <div className="slider">
-                <span className={isPriceDesc && "checked"}>↑</span>
-              </div>
-            </label>
+            </div>
 
-            <DoubleRangeSlider
-              priceRange={priceRange}
-              onChange={handleChangePriceRange}
-              min={0}
-              max={1000}
-            />
+            <div>
+              <label className="switch">
+                Tri par prix :
+                <input
+                  type="checkbox"
+                  checked={isPriceDesc}
+                  onChange={handleChangePriceSorting}
+                />
+                <div className="slider">
+                  <span className={isPriceDesc && "checked"}>↑</span>
+                </div>
+              </label>
+
+              <DoubleRange
+                priceRange={priceRange}
+                onChange={handleChangePriceRange}
+                min={0}
+                max={1000}
+              />
+            </div>
           </form>
         </div>
 
