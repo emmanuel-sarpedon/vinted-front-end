@@ -10,6 +10,10 @@ La partie Front est en cours de développement. Si vous voulez avoir un aperçu 
 
 ---
 
+MàJ 02/08/2021 :
+
+> Nouveaux filtres d'annonces
+
 MàJ 23/07/2021 :
 
 > Possibilité de s'inscrire et de se connecter depuis le site
