@@ -19,7 +19,9 @@ const App = () => {
   const [isPriceDesc, setIsPriceDesc] = useState(false);
 
   const [priceMin, setPriceMin] = useState(0);
+  const [debouncePriceMin] = useDebounce(priceMin, 500);
   const [priceMax, setPriceMax] = useState(1000);
+  const [debouncePriceMax] = useDebounce(priceMax, 500);
 
   const handleLogin = (token) => {
     Cookies.set("token", token);
@@ -39,7 +41,7 @@ const App = () => {
     setIsPriceDesc(e.target.checked);
   };
 
-  const handleChangePriceRange = (event, array) => {
+  const handleChangePriceRange = (array) => {
     setPriceMin(Math.min(...array));
     setPriceMax(Math.max(...array));
   };
@@ -62,8 +64,8 @@ const App = () => {
             <Home
               search={debounceSearch}
               isPriceDesc={isPriceDesc}
-              priceMin={priceMin}
-              priceMax={priceMax}
+              priceMin={debouncePriceMin}
+              priceMax={debouncePriceMax}
             />
           </Route>
           <Route path="/offer/:id">
