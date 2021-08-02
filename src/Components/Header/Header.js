@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import vintedlogo from "../../assets/vinted_logo.png";
 import DoubleRange from "../DoubleRange/DoubleRange";
@@ -17,13 +18,23 @@ const Header = (props) => {
     handleChangePriceRange,
   } = props;
 
+  const [isFiltersHidden, setIsFiltersHidden] = useState(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    location.pathname === "/"
+      ? setIsFiltersHidden(false)
+      : setIsFiltersHidden(true);
+  }, [location.pathname]);
+
   return (
     <header>
       <div className="container">
         <Link to="/">
           <img src={vintedlogo} alt="vinted-logo" />
         </Link>
-        <div className="filters">
+        <div className={`filters ${isFiltersHidden ? "hidden" : ""}`}>
           <form>
             <div className="search">
               <input
@@ -43,7 +54,7 @@ const Header = (props) => {
                   onChange={handleChangePriceSorting}
                 />
                 <div className="slider">
-                  <span className={isPriceDesc && "checked"}>↑</span>
+                  <span className={isPriceDesc ? "checked" : ""}>↑</span>
                 </div>
               </label>
 

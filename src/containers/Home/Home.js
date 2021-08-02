@@ -49,8 +49,6 @@ const Home = (props) => {
       setNumberOfPages(Math.ceil(response.data.count / limit));
 
       setIsLoading(false);
-
-      console.log(queryParams);
     }
     fetchData();
   }, [page, limit, search, sort, priceMin, priceMax]);
