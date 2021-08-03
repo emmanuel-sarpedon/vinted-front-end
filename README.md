@@ -10,6 +10,11 @@ La partie Front est en cours de développement. Si vous voulez avoir un aperçu 
 
 ---
 
+MàJ 03/08/2021 :
+
+> Possibilité de publier des annonces depuis le site
+> `/offer/publish`✅
+
 MàJ 02/08/2021 :
 
 > Nouveaux filtres d'annonces
