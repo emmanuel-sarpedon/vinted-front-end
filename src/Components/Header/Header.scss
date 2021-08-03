@@ -25,12 +25,12 @@ header {
 
     form {
       .search {
-        margin-bottom: 10px;
+        margin-bottom: 30px;
 
         input {
           border: none;
           background-color: rgb(241, 240, 240);
-          width: 300px;
+          width: 500px;
           height: 30px;
           padding: 5px 20px;
         }
@@ -38,7 +38,7 @@ header {
 
       .switch {
         display: inline-block;
-        margin-bottom: 10px;
+        margin-bottom: 30px;
         color: rgb(175, 175, 175);
         input {
           height: 0;

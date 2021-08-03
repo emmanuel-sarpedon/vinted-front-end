@@ -8,7 +8,6 @@ import Loader from "../../Components/Loader/Loader";
 import "./Offer.scss";
 
 const Offer = () => {
-  const url = "https://api-vinted.herokuapp.com";
   const { id } = useParams();
 
   const [offer, setOffer] = useState([]);
@@ -16,6 +15,7 @@ const Offer = () => {
 
   useEffect(() => {
     async function fetchData(id) {
+      const url = "https://api-vinted.herokuapp.com";
       setIsLoading(true);
       const response = await axios.get(url + "/offer/" + id);
 

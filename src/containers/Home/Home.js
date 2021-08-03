@@ -72,7 +72,9 @@ const Home = (props) => {
         <div className="container">
           <div>
             <p>Prêts à faire du tri dans vos placards ?</p>
-            <button>Commencer à vendre</button>
+            <button>
+              <Link to="/publish">Commencer à vendre</Link>
+            </button>
           </div>
         </div>
         <img src={tear} alt="" />

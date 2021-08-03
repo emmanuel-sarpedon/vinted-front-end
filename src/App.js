@@ -5,10 +5,12 @@ import { useDebounce } from "use-debounce";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
 import Signup from "./containers/Signup/Signup";
 import Login from "./containers/Login/Login";
 import Home from "./containers/Home/Home";
 import Offer from "./containers/Offer/Offer";
+import Publish from "./containers/Publish/Publish";
 
 import Cookies from "js-cookie";
 
@@ -77,7 +79,11 @@ const App = () => {
           <Route path="/login">
             <Login handleLogin={handleLogin} />
           </Route>
+          <Route path="/publish">
+            <Publish token={token} />
+          </Route>
         </Switch>
+        <Footer />
       </Router>
     </div>
   );

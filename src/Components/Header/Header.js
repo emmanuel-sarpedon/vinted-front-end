@@ -72,7 +72,7 @@ const Header = (props) => {
           {token ? (
             <>
               <button className="falsy" onClick={handleLogout}>
-                Se déconnecter
+                <Link>Se déconnecter</Link>
               </button>
             </>
           ) : (
@@ -86,7 +86,9 @@ const Header = (props) => {
             </>
           )}
 
-          <button>Vends tes articles</button>
+          <button>
+            <Link to="/publish">Vends tes articles</Link>
+          </button>
         </div>
       </div>
     </header>
