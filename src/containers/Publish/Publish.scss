@@ -1,7 +1,73 @@
+@import "../../color.scss";
+
 .publish {
+  background-color: #ebedee;
+  padding: 45px 80px;
+
+  h2 {
+    font-size: 24px;
+    font-weight: normal;
+  }
+
+  .file-input {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+
+    input {
+      width: 100%;
+    }
+  }
+
   form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
+
+    div {
+      background-color: white;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-top: 15px;
+      border: lightgray 1px solid;
+      box-shadow: 0 0 10px lightgray;
+
+      label {
+        color: grey;
+        height: 80px;
+        display: flex;
+        padding: 20px;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: solid 1px lightgrey;
+
+        input {
+          width: 50%;
+          padding: 10px 0;
+          min-width: 300px;
+          border: none;
+          border-bottom: solid 1px lightgray;
+
+          &::placeholder {
+            color: lightgray;
+          }
+
+          &:focus {
+            outline: none;
+            border-bottom: solid 1px $main-color;
+          }
+        }
+      }
+    }
+
+    button {
+      margin-top: 20px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }

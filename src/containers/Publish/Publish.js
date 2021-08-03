@@ -3,7 +3,6 @@ import { useState } from "react";
 import axios from "axios";
 
 import Loader from "../../Components/Loader/Loader";
-
 import "./Publish.scss";
 
 const Publish = (props) => {
@@ -66,77 +65,102 @@ const Publish = (props) => {
       <Loader />
     ) : (
       <div className="publish">
+        <h2>Vend ton article</h2>
         <form onSubmit={handleSubmit}>
-          <input
-            required
-            type="file"
-            onChange={(e) => setPicture(e.target.files[0])}
-          />
-          <label>
-            Titre
+          <div className="file-input">
             <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              required
+              type="file"
+              onChange={(e) => setPicture(e.target.files[0])}
+              accept=".jpeg,.jpg,.gif,.png"
             />
-          </label>
-          <label>
-            Décris ton article
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </label>
-          <label>
-            Marque
-            <input
-              type="text"
-              value={brand}
-              onChange={(e) => setBrand(e.target.value)}
-            />
-          </label>
-          <label>
-            Taille
-            <input
-              type="text"
-              value={size}
-              onChange={(e) => setSize(e.target.value)}
-            />
-          </label>
-          <label>
-            Couleur
-            <input
-              type="text"
-              value={color}
-              onChange={(e) => setColor(e.target.value)}
-            />
-          </label>
-          <label>
-            Etat
-            <input
-              type="text"
-              value={condition}
-              onChange={(e) => setCondition(e.target.value)}
-            />
-          </label>
-          <label>
-            Lieu
-            <input
-              type="text"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            />
-          </label>
-          <label>
-            Prix
-            <input
-              type="number"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </label>
-          <button>Envoyer</button>
+          </div>
+
+          <div>
+            <label>
+              Titre
+              <input
+                required
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Ex : Pantalon Homme "
+              />
+            </label>
+            <label>
+              Décris ton article
+              <input
+                required
+                type="text"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Ex : Quasiment neuf, coupe slim "
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Marque
+              <input
+                type="text"
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+                placeholder="Ex : Schott "
+              />
+            </label>
+            <label>
+              Taille
+              <input
+                type="text"
+                value={size}
+                onChange={(e) => setSize(e.target.value)}
+                placeholder="Ex : L / Unique / 40"
+              />
+            </label>
+            <label>
+              Couleur
+              <input
+                type="text"
+                value={color}
+                onChange={(e) => setColor(e.target.value)}
+                placeholder="Ex : Marron "
+              />
+            </label>
+            <label>
+              Etat
+              <input
+                type="text"
+                value={condition}
+                onChange={(e) => setCondition(e.target.value)}
+                placeholder="Ex : Neuf "
+              />
+            </label>
+            <label>
+              Lieu
+              <input
+                required
+                type="text"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                placeholder="Ex : Bordeaux "
+              />
+            </label>
+          </div>
+
+          <div>
+            <label>
+              Prix
+              <input
+                required
+                type="number"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                placeholder="0"
+              />
+            </label>
+          </div>
+
+          <button>Publier</button>
         </form>
       </div>
     )
