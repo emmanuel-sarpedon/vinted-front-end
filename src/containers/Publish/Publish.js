@@ -67,13 +67,16 @@ const Publish = (props) => {
       <div className="publish">
         <h2>Vend ton article</h2>
         <form onSubmit={handleSubmit}>
-          <div className="file-input">
-            <input
-              required
-              type="file"
-              onChange={(e) => setPicture(e.target.files[0])}
-              accept=".jpeg,.jpg,.gif,.png"
-            />
+          <div>
+            <label>
+              Photo
+              <input
+                required
+                type="file"
+                onChange={(e) => setPicture(e.target.files[0])}
+                accept=".jpeg,.jpg,.gif,.png"
+              />
+            </label>
           </div>
 
           <div>
