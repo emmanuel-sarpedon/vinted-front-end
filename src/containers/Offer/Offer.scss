@@ -11,7 +11,10 @@
     padding: 50px 0;
 
     > img {
-      object-fit: cover;
+      object-fit: contain;
+      min-height: 350px;
+      max-height: 40vh;
+      max-width: 40vw;
     }
 
     > .offer-infos {

@@ -1,31 +1,38 @@
 @import "./color.scss";
 
-button {
-  border: $main-color 1px solid;
-  color: white;
-  background-color: #2cb1ba;
-  font-family: "MaisonNeue";
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 12px;
-  margin-left: 20px;
-  padding: 5px 20px;
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-  &:hover {
-    box-shadow: 0 0 5px $main-color;
-  }
-
-  &.thin {
-    background-color: white;
-    color: $main-color;
-  }
-
-  &.falsy {
-    background-color: $falsy-color;
-    border-color: $falsy-color;
+  button {
+    border: $main-color 1px solid;
+    color: white;
+    background-color: #2cb1ba;
+    font-family: "MaisonNeue";
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 12px;
+    margin-left: 20px;
+    padding: 5px 20px;
 
     &:hover {
-      box-shadow: 0 0 5px $falsy-color;
+      box-shadow: 0 0 5px $main-color;
+    }
+
+    &.thin {
+      background-color: white;
+      color: $main-color;
+    }
+
+    &.falsy {
+      background-color: $falsy-color;
+      border-color: $falsy-color;
+
+      &:hover {
+        box-shadow: 0 0 5px $falsy-color;
+      }
     }
   }
 }

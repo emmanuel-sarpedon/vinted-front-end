@@ -11,6 +11,7 @@ import Login from "./containers/Login/Login";
 import Home from "./containers/Home/Home";
 import Offer from "./containers/Offer/Offer";
 import Publish from "./containers/Publish/Publish";
+import Payment from "./containers/Payment/Payment";
 
 import Cookies from "js-cookie";
 
@@ -81,6 +82,9 @@ const App = () => {
           </Route>
           <Route path="/publish">
             <Publish token={token} />
+          </Route>
+          <Route path="/payment/:id">
+            <Payment token={token} />
           </Route>
         </Switch>
         <Footer />

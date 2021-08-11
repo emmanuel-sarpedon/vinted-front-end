@@ -1,0 +1,44 @@
+.checkout-form {
+  width: 700px;
+  margin: auto;
+
+  form {
+    > div {
+      margin-top: 20px;
+      border-bottom: lightgrey 1px solid;
+      padding: 10px;
+
+      > div {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+
+        span:last-child {
+          font-weight: bold;
+        }
+      }
+    }
+
+    button {
+      width: 100%;
+      margin: 50px 0;
+      background-color: green;
+      border: green;
+
+      &:hover {
+        cursor: pointer;
+        box-shadow: none;
+      }
+
+      &:disabled {
+        background-color: lightgrey;
+        content: "Please wait";
+
+        &:hover {
+          cursor: default;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}

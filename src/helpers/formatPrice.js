@@ -2,7 +2,7 @@ const formatPrice = (number) => {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
     currency: "EUR",
-  }).format(parseInt(number));
+  }).format(Number(number));
 };
 
 export default formatPrice;
