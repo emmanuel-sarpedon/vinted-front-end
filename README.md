@@ -10,6 +10,14 @@ La partie Front est en cours de développement. Si vous voulez avoir un aperçu 
 
 ---
 
+MàJ 11/08/2021 :
+
+> Possibilité de simuler l'achat d'un article (géré par Stripe) > `/payment/:id`✅
+
+| N° de carte bancaire | Expériration | CVC | Code postal |
+| -------------------- | ------------ | --- | ----------- |
+| 4242 4242 4242 4242  | 04 / 24      | 242 | 42424       |
+
 MàJ 03/08/2021 :
 
 > Possibilité de publier des annonces depuis le site
