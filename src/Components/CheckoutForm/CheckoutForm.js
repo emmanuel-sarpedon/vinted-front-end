@@ -30,7 +30,7 @@ const CheckoutForm = (props) => {
 
       setIsButtonDisabled(true);
       const response = await axios.post(
-        "http://localhost:5000/payment",
+        "https://api-vinted.herokuapp.com/payment",
         {
           stripeToken,
           totalPrice,
