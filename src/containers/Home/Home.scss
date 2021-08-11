@@ -141,3 +141,52 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .home {
+    .ready {
+      .container {
+        max-width: 100vw;
+        height: 80vh;
+
+        div {
+          width: 80vw;
+          max-width: 410px;
+          margin: auto;
+          p {
+            font-size: 1.3rem;
+          }
+        }
+      }
+      img {
+        display: none;
+      }
+
+      & + div {
+        display: flex;
+        flex-direction: column;
+
+        .paging {
+          margin: 15px;
+
+          .results {
+            display: flex;
+            justify-content: center;
+          }
+
+          .pages {
+            display: flex;
+            justify-content: center;
+          }
+        }
+      }
+    }
+
+    .offers {
+      justify-content: center;
+      .offer-item {
+        margin: 10px 20px;
+      }
+    }
+  }
+}

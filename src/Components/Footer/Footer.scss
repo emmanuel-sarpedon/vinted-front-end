@@ -58,3 +58,19 @@ footer {
     }
   }
 }
+
+@media (max-width: 1200px) {
+  footer {
+    padding: 20px;
+
+    div {
+      &:not(:first-child) {
+        margin-top: 20px;
+      }
+
+      &.external-link {
+        margin-top: 15px;
+      }
+    }
+  }
+}
