@@ -2,14 +2,11 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import formatPrice from "../../helpers/formatPrice";
-
 import Loader from "../../Components/Loader/Loader";
-
 import "./Offer.scss";
 
 const Offer = () => {
   const { id } = useParams();
-
   const [offer, setOffer] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -47,7 +44,7 @@ const Offer = () => {
             <div className="description">{offer.product_description}</div>
             <div>{offer.owner.account.username}</div>
             <button>
-              <Link to="/payment">Acheter</Link>
+              <Link to={"/payment/" + id}>Acheter</Link>
             </button>
           </div>
         </div>

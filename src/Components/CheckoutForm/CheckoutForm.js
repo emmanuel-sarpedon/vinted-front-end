@@ -1,11 +1,19 @@
 import "./CheckoutForm.scss";
-
+import formatPrice from "../../helpers/formatPrice";
 import { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
 import axios from "axios";
 
-const CheckoutForm = ({ token }) => {
+const CheckoutForm = (props) => {
+  const {
+    token,
+    price,
+    orderExpenses,
+    deliveryExpenses,
+    totalPrice,
+    description,
+  } = props;
   const stripe = useStripe();
   const elements = useElements();
 
@@ -15,15 +23,15 @@ const CheckoutForm = ({ token }) => {
     e.preventDefault();
 
     const cardElement = elements.getElement(CardElement);
-
     const stripeResponse = await stripe.createToken(cardElement);
-
     const stripeToken = stripeResponse.token.id;
 
     const response = await axios.post(
       "http://localhost:5000/payment",
       {
         stripeToken,
+        totalPrice,
+        description,
       },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -39,23 +47,24 @@ const CheckoutForm = ({ token }) => {
         <form onSubmit={handleSubmit}>
           <div>
             <span>Résumé de la commande</span>
+            <span>{description}</span>
             <div>
               <span>Commande</span>
-              <span>3,95€</span>
+              <span>{formatPrice(price)}</span>
             </div>
             <div>
               <span>Frais de transactions</span>
-              <span>0,95€</span>
+              <span>{formatPrice(orderExpenses)}</span>
             </div>
             <div>
               <span>Frais de livraison</span>
-              <span>1,30€</span>
+              <span>{formatPrice(deliveryExpenses)}</span>
             </div>
           </div>
           <div>
             <div>
               <span>Total</span>
-              <span>6,20€</span>
+              <span>{formatPrice(totalPrice)}</span>
             </div>
           </div>
           <CardElement className="card-element" />
