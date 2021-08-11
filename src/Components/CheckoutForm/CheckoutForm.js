@@ -18,61 +18,71 @@ const CheckoutForm = (props) => {
   const elements = useElements();
 
   const [completed, setCompleted] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const cardElement = elements.getElement(CardElement);
-    const stripeResponse = await stripe.createToken(cardElement);
-    const stripeToken = stripeResponse.token.id;
+    try {
+      const cardElement = elements.getElement(CardElement);
+      const stripeResponse = await stripe.createToken(cardElement);
+      const stripeToken = stripeResponse.token.id;
 
-    const response = await axios.post(
-      "http://localhost:5000/payment",
-      {
-        stripeToken,
-        totalPrice,
-        description,
-      },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
+      setIsButtonDisabled(true);
+      const response = await axios.post(
+        "http://localhost:5000/payment",
+        {
+          stripeToken,
+          totalPrice,
+          description,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-    if (response.data.status === "succeeded") {
-      setCompleted(true);
-    }
+      if (response.data.status === "succeeded") {
+        setCompleted(true);
+        setIsButtonDisabled(false);
+      }
+    } catch (error) {}
   };
 
   return (
     <div className="checkout-form">
-      {!completed ? (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <span>Résumé de la commande</span>
-            <span>{description}</span>
+      <form onSubmit={handleSubmit}>
+        {!completed && (
+          <>
             <div>
-              <span>Commande</span>
-              <span>{formatPrice(price)}</span>
+              <div>
+                <span>Résumé de la commande</span>
+                <span>{description}</span>
+              </div>
+              <div>
+                <span>Commande</span>
+                <span>{formatPrice(price)}</span>
+              </div>
+              <div>
+                <span>Frais de transactions</span>
+                <span>{formatPrice(orderExpenses)}</span>
+              </div>
+              <div>
+                <span>Frais de livraison</span>
+                <span>{formatPrice(deliveryExpenses)}</span>
+              </div>
             </div>
             <div>
-              <span>Frais de transactions</span>
-              <span>{formatPrice(orderExpenses)}</span>
+              <div>
+                <span>Total</span>
+                <span>{formatPrice(totalPrice)}</span>
+              </div>
             </div>
-            <div>
-              <span>Frais de livraison</span>
-              <span>{formatPrice(deliveryExpenses)}</span>
-            </div>
-          </div>
-          <div>
-            <div>
-              <span>Total</span>
-              <span>{formatPrice(totalPrice)}</span>
-            </div>
-          </div>
-          <CardElement className="card-element" />
-          <button type="submit">Pay</button>
-        </form>
-      ) : (
-        "Merci pour l'achat"
-      )}
+            <CardElement className="card-element" />
+          </>
+        )}
+
+        <button type="submit" disabled={isButtonDisabled}>
+          {!completed ? "Pay" : "Merci pour l'achat"}
+        </button>
+      </form>
     </div>
   );
 };
