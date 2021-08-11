@@ -83,7 +83,7 @@ const App = () => {
           <Route path="/publish">
             <Publish token={token} />
           </Route>
-          <Route path="/payment">
+          <Route path="/payment/:id">
             <Payment token={token} />
           </Route>
         </Switch>
