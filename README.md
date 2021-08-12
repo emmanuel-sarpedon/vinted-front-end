@@ -14,7 +14,7 @@ MàJ 11/08/2021 :
 
 > Possibilité de simuler l'achat d'un article (géré par Stripe) > `/payment/:id`✅
 
-| N° de carte bancaire | Expériration | CVC | Code postal |
+| N° de carte bancaire | Expiration | CVC | Code postal |
 | -------------------- | ------------ | --- | ----------- |
 | 4242 4242 4242 4242  | 04 / 24      | 242 | 42424       |
 
